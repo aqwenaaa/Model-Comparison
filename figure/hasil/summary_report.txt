@@ -1,0 +1,67 @@
+
+================================================================================
+LAPORAN ANALISIS MCDM SISTEM ASURANSI AXA
+================================================================================
+
+Tanggal Analisis: 2026-05-05 22:07:46
+Framework: CRISP-DM
+Metode: SAW, EDAS, TOPSIS, AHP
+
+================================================================================
+1. DATA SUMMARY
+================================================================================
+
+Total Record Klaim: 4627
+Total Polis Unik: 4096
+Alternatif Dianalisis: 52
+
+Kriteria MCDM:
+- C1: Total Klaim (Cost) - Bobot: 0.25
+- C2: Frekuensi Klaim (Cost) - Bobot: 0.20
+- C3: Durasi Rawat (Cost) - Bobot: 0.15
+- C4: Usia Pasien (Cost) - Bobot: 0.15
+- C5: Lama Polis (Benefit) - Bobot: 0.15
+- C6: Rasio Approval (Benefit) - Bobot: 0.10
+
+================================================================================
+2. HASIL RANKING
+================================================================================
+
+Top 5 Alternatif (Borda Count):
+Alternatif Nomor_Polis  Borda_Score  Avg_Rank
+       A04    POL-3314          207      1.25
+       A06    POL-0106          196      4.00
+       A11    POL-0058          195      4.25
+       A03    POL-1625          195      4.25
+       A07    POL-1707          185      6.75
+
+================================================================================
+3. KONSISTENSI METODE
+================================================================================
+
+Korelasi Spearman Rata-rata: 0.7850
+Akurasi Exact Match: 0.0%
+Akurasi Tolerance ±5: 15.4%
+Akurasi Keseluruhan: 65.18%
+
+================================================================================
+4. FEATURE IMPORTANCE
+================================================================================
+
+Top 3 Kriteria Paling Berpengaruh:
+                 Average
+Lama_Polis     -0.024656
+Rasio_Approval  0.145267
+Usia_Pasien     0.145549
+
+================================================================================
+5. REKOMENDASI
+================================================================================
+
+Alternatif Terbaik: A04 (POL-3314)
+Metode yang Direkomendasikan: EDAS
+Consistency Ratio AHP: 0.0059 (VALID)
+
+================================================================================
+END OF REPORT
+================================================================================

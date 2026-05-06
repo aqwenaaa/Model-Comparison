@@ -1,0 +1,26 @@
+Criteria_Code,Criteria_Name,Dimension,Type,Unit,Description,Base_Weight_Balanced,Formula_Pseudocode
+C01,Total_Klaim,Financial,Cost,Rp,Total nominal klaim per polis,0.05,SUM(Nominal_Disetujui) per polis
+C02,Mean_Klaim_Per_Incident,Financial,Cost,Rp,Rata-rata nilai per klaim,0.05,MEAN(Nominal_Disetujui) per polis
+C03,Max_Klaim_Single_Incident,Financial,Cost,Rp,Peak claim value dalam satu transaksi,0.05,MAX(Nominal_Disetujui) per polis
+C04,Std_Dev_Klaim,Financial,Cost,Rp,Volatilitas nilai klaim,0.05,STDEV(Nominal_Disetujui) per polis
+C05,Total_Biaya_RS,Financial,Cost,Rp,Total medical cost dari RS,0.05,SUM(Nominal_Biaya_RS) per polis
+C06,Cost_Per_Day_LOS,Financial,Cost,Rp/hari,Rata-rata cost per hari rawat inap,0.05,MEAN(Nominal_Biaya_RS / durasi_rawat) for inpatient
+C07,Total_Frekuensi_Klaim,Frequency,Cost,unit,Jumlah klaim diajukan,0.05,COUNT(*) per polis
+C08,Frekuensi_Klaim_Per_Tahun,Frequency,Cost,unit/tahun,Annualized claim rate,0.05,COUNT(*) / tenure_years
+C09,Pct_Inpatient,Frequency,Cost,%,Persentase klaim inpatient,0.05,COUNT(inpatient) / COUNT(*) * 100
+C10,Pct_Outpatient,Frequency,Benefit,%,Persentase klaim outpatient,0.05,COUNT(outpatient) / COUNT(*) * 100
+C11,Pct_Cashless,Frequency,Benefit,%,Persentase klaim cashless,0.05,COUNT(cashless) / COUNT(*) * 100
+C12,Pct_Reimburse,Frequency,Cost,%,Persentase klaim reimburse,0.05,COUNT(reimburse) / COUNT(*) * 100
+C13,Avg_Durasi_Rawat_Inap,Medical,Cost,hari,Average length of stay inpatient,0.05,MEAN(checkout_date - checkin_date) for inpatient
+C14,Max_Durasi_Rawat_Inap,Medical,Cost,hari,Peak length of stay inpatient,0.05,MAX(checkout_date - checkin_date) for inpatient
+C15,Jumlah_Diagnosis_Unik,Medical,Cost,unit,Jumlah diagnosis berbeda (ICD codes),0.05,COUNT(DISTINCT ICD_Diagnosis) per polis
+C16,Frekuensi_High_Risk_Diagnosis,Medical,Cost,unit,Jumlah diagnosa risiko tinggi,0.05,COUNT(*) where ICD in [high-risk list]
+C17,Complexity_Score,Medical,Cost,score,Weighted severity score diagnosis,0.05,MEAN(severity_weight) dari ICD
+C18,Rasio_Approval_Rate,Approval,Benefit,%,Persentase nominal approved vs total biaya RS,0.025,SUM(disetujui) / SUM(biaya_rs) * 100
+C19,Efisiensi_Klaim_Processing,Approval,Benefit,hari,Waktu dari klaim sampai pembayaran,0.025,MEAN(bayar_date - masuk_date)
+C20,Benefit_Utilization_Rate,Approval,Benefit,%,Persentase benefit digunakan,0.025,SUM(disetujui) / max_benefit * 100
+C21,Claim_Rejection_Rate,Approval,Cost,%,Persentase klaim yang ditolak,0.025,COUNT(rejected) / COUNT(*) * 100
+C22,Lama_Polis,Profile,Benefit,tahun,Tenure kepesertaan polis,0.0125,(current_date - efektif_date) / 365.25
+C23,Usia_Peserta,Profile,Cost,tahun,Average age saat klaim,0.0125,MEAN(masuk_date - lahir_date) / 365.25
+C24,Gender_Risk_Profile,Profile,Neutral,kategori,Gender dummy (Female=1 Male=0),0.0125,IF(Gender=F then 1 else 0)
+C25,Plan_Risk_Category,Profile,Neutral,kategori,Plan type encoded (M-001=1 M-002=2 M-003=3),0.0125,CASE Plan_Code WHEN M-001 THEN 1 WHEN M-002 THEN 2 WHEN M-003 THEN 3
